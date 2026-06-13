@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контактная форма</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    .contact-form {
+      max-width: 400px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .contact-form label {
+      display: block;
+      margin-top: 15px;
+    }
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .contact-form textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    .contact-form button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .contact-form button:hover {
+      background-color: #005ea1;
+    }
+
+.back-home-btn {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.back-home-btn:hover {
+  background-color: #555;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+  }
+  .contact-form {
+    padding: 16px;
+  }
+  .contact-form > div {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .contact-form h2 {
+    font-size: 1.25rem;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div class="contact-form">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <h2 data-i18n="contact_title">Связаться с нами</h2>
+      <button id="toggle-lang" style="font-size:14px; padding:6px 12px; cursor:pointer;">🌐 English</button>
+    </div>
+    <form id="contactForm">
+      <label for="name"><span data-i18n="contact_name">Имя</span> <span style="color:red">*</span></label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email"><span data-i18n="contact_email">Email</span> <span style="color:red">*</span></label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="subject" data-i18n="contact_subject">Тема</label>
+      <input type="text" id="subject" name="subject" />
+
+      <label for="message"><span data-i18n="contact_message">Сообщение</span> <span style="color:red">*</span></label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit" data-i18n="contact_submit">Отправить</button>
+    </form>
+
+    
+  </div>
+
+  <div id="dialog-message" title="Спасибо!" style="display:none;">
+    <p data-i18n="contact_success">Ваше сообщение успешно отправлено. Мы свяжемся с вами в ближайшее время.</p>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script>
+    $(function() {
+      // Обработка отправки формы
+      $("#contactForm").on("submit", function(event) {
+        event.preventDefault();
+
+        // Простая валидация (HTML5 уже проверяет required и тип email)
+        let name = $("#name").val().trim();
+        let email = $("#email").val().trim();
+        let message = $("#message").val().trim();
+
+        if (name === "" || email === "" || message === "") {
+          alert("Пожалуйста, заполните все обязательные поля.");
+          return;
+        }
+
+        // Проверка корректности email (базово)
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          alert("Пожалуйста, введите корректный email.");
+          return;
+        }
+
+        // Здесь можно отправить данные на сервер с помощью AJAX, например:
+        // $.post('/send-message', $(this).serialize(), function(response){ ... });
+
+        // Показать диалоговое окно с благодарностью
+        $("#dialog-message").dialog({
+          modal: true,
+          buttons: {
+            "Закрыть": function() {
+              $(this).dialog("close");
+            }
+          },
+          close: function() {
+            // Очистить форму после закрытия диалога
+            $("#contactForm")[0].reset();
+          }
+        });
+      });
+    });
+  </script>
+
+  <!-- Кнопка "На главную" -->
+  <div style="text-align: center;">
+    <a href="index.html" class="back-home-btn">
+      <i class="fas fa-arrow-left"></i> <span data-i18n="contact_back_btn">На главную</span>
+    </a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Туристический гид по Беларуси</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<button id="hamburger-btn" class="hamburger-btn" aria-label="Меню">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+<aside id="sidebar" class="sidebar">
+
+  <button id="sidebar-close" class="sidebar-close" aria-label="Закрыть">&times;</button>
+
+  <div class="sidebar-section">
+    <button id="toggle-theme">🌙 Тёмная тема</button>
+    <button id="toggle-lang" style="margin-top:8px;">🌐 English</button>
+  </div>
+
+  <div class="sidebar-section">
+
+    <!-- Форма входа/регистрации (видна, если пользователь не авторизован) -->
+    <div id="auth-forms">
+
+      <div id="login-form" class="auth-form">
+        <h3 data-i18n="sidebar_login_title">Вход</h3>
+        <input type="text" id="login-username" placeholder="Имя пользователя" data-i18n="sidebar_login_username">
+        <input type="password" id="login-password" placeholder="Пароль" data-i18n="sidebar_login_password">
+        <button id="login-submit" class="hero-btn" data-i18n="sidebar_login_btn">Войти</button>
+        <p class="auth-switch"><span data-i18n="sidebar_login_switch">Нет аккаунта?</span> <a href="#" id="show-register" data-i18n="sidebar_login_switch_link">Зарегистрироваться</a></p>
+        <p id="login-error" class="auth-error"></p>
+      </div>
+
+      <div id="register-form" class="auth-form" style="display:none;">
+        <h3 data-i18n="sidebar_register_title">Регистрация</h3>
+        <input type="text" id="register-username" placeholder="Имя пользователя" data-i18n="sidebar_login_username">
+        <input type="password" id="register-password" placeholder="Пароль" data-i18n="sidebar_login_password">
+        <button id="register-submit" class="hero-btn" data-i18n="sidebar_register_btn">Зарегистрироваться</button>
+        <p class="auth-switch"><span data-i18n="sidebar_register_switch">Уже есть аккаунт?</span> <a href="#" id="show-login" data-i18n="sidebar_register_switch_link">Войти</a></p>
+        <p id="register-error" class="auth-error"></p>
+      </div>
+
+    </div>
+
+    <!-- Профиль пользователя (виден после входа) -->
+    <div id="user-profile" style="display:none;">
+      <h3 id="profile-username"></h3>
+
+      <div class="favorites-block">
+        <h4 data-i18n="sidebar_favorites_title">⭐ Избранное</h4>
+        <ul id="favorites-list" class="favorites-list"></ul>
+        <p id="favorites-empty" class="favorites-empty" data-i18n="sidebar_favorites_empty">Пока пусто. Добавляйте достопримечательности из каталога!</p>
+      </div>
+
+      <button id="logout-btn" class="hero-btn secondary logout-btn" data-i18n="auth_logout_btn">🚪 Выйти из аккаунта</button>
+    </div>
+
+  </div>
+
+
+</aside>
+
+
+<header>
+  <nav class="main-nav">
+    <a href="message.html" data-i18n="nav_contact">Контакт</a>
+    <a href="catalog.html" data-i18n="nav_catalog">Каталог</a>
+    <a href="developer.html" data-i18n="nav_developer">О разработчике</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 data-i18n="hero_title">Туристический гид по Беларуси</h1>
+    <div class="hero-quote">
+    <p data-i18n="hero_quote">
+      Беларусь — страна богатой истории, уникальной природы
+    и мест, которые стоит увидеть своими глазами.
+    </p>
+    </div>
+
+    <div class="hero-buttons">
+      <a href="catalog.html" class="hero-btn" data-i18n="hero_btn_catalog">Перейти в каталог</a>
+      <a href="#map-section" class="hero-btn secondary" data-i18n="hero_btn_map">Открыть карту</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="popular-places">
+<h2 data-i18n="popular_title">Популярные достопримечательности</h2>
+
+<div class="cards">
+
+<a href="catalog.html#mir" class="card place-card">
+    <img src="images/mir.jpg" alt="Мирский замок">
+    <h3 data-i18n="place_mir_name">🏰 Мирский замок</h3>
+    <p data-i18n="place_mir_desc">Один из самых известных памятников архитектуры Беларуси.</p>
+</a>
+
+<a href="catalog.html#nesvizh" class="card place-card">
+    <img src="images/nesvizh.jpg" alt="Несвижский замок">
+    <h3 data-i18n="place_nesvizh_name">🏰 Несвижский замок</h3>
+    <p data-i18n="place_nesvizh_desc">Объект Всемирного наследия ЮНЕСКО.</p>
+</a>
+
+<a href="catalog.html#brest-fortress" class="card place-card">
+    <img src="images/brest.jpg" alt="Брестская крепость">
+    <h3 data-i18n="place_brest_name">🛡️ Брестская крепость</h3>
+    <p data-i18n="place_brest_desc">Символ мужества и памяти Великой Отечественной войны.</p>
+</a>
+
+<a href="catalog.html#bialowieza" class="card place-card">
+    <img src="images/bialowieza.jpg" alt="Беловежская пуща">
+    <h3 data-i18n="place_bialowieza_name">🌲 Беловежская пуща</h3>
+    <p data-i18n="place_bialowieza_desc">Уникальный природный заповедник мирового значения.</p>
+</a>
+
+</div>
+</section>
+
+<section class="advantages">
+<h2 data-i18n="advantages_title">Почему стоит посетить Беларусь?</h2>
+
+<div class="cards">
+
+<div class="card">
+    <h3 data-i18n="advantage1_title">🏰 Богатая история</h3>
+    <p data-i18n="advantage1_desc">Замки, крепости и древние города с многовековым прошлым.</p>
+</div>
+
+<div class="card">
+    <h3 data-i18n="advantage2_title">🌲 Уникальная природа</h3>
+    <p data-i18n="advantage2_desc">Заповедники, озёра и леса, сохранившие первозданный вид.</p>
+</div>
+
+<div class="card">
+    <h3 data-i18n="advantage3_title">🍽️ Гостеприимство и кухня</h3>
+    <p data-i18n="advantage3_desc">Тёплый приём и блюда национальной кухни на любой вкус.</p>
+</div>
+
+<div class="card">
+    <h3 data-i18n="advantage4_title">🚆 Удобно добираться</h3>
+    <p data-i18n="advantage4_desc">Развитая транспортная сеть и доступные цены на туры.</p>
+</div>
+
+</div>
+</section>
+
+<section class="discover">
+
+    <div class="discover-image">
+        <img src="images/museum.jpg" alt="Музей Беларуси">
+    </div>
+
+    <div class="discover-text">
+
+    <span class="discover-label" data-i18n="discover_label">
+        КУЛЬТУРНОЕ НАСЛЕДИЕ
+    </span>
+
+    <h2 data-i18n="discover_title">Погрузитесь в культуру Беларуси</h2>
+
+    <p data-i18n="discover_text">
+        Беларусь сочетает богатую историю,
+        уникальную архитектуру и многовековые традиции.
+    </p>
+
+    <ul class="discover-list">
+        <li data-i18n="discover_li1">🏰 Более 20 замков и дворцов</li>
+        <li data-i18n="discover_li2">🏛 Сотни музеев и исторических объектов</li>
+        <li data-i18n="discover_li3">🌍 Объекты Всемирного наследия ЮНЕСКО</li>
+        <li data-i18n="discover_li4">🎭 Фестивали и народные традиции</li>
+    </ul>
+
+    <a href="catalog.html" class="hero-btn" data-i18n="discover_btn">
+        Смотреть каталог
+    </a>
+
+</div>
+
+</section>
+
+<section class="regions-section">
+
+    <h2 data-i18n="regions_title">Изучите регионы Беларуси</h2>
+
+    <p class="regions-subtitle" data-i18n="regions_subtitle">
+        Нажмите на область, чтобы узнать больше о регионе
+    </p>
+
+    <div class="regions-map">
+
+<svg class="belarus-svg" width="747" height="605" viewBox="0 0 747 605" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_2062_55)">
+<path id = "brest" class="region-svg" onclick="showRegion('brest')" d="M8.53857 452L48.0386 486.5L53.5386 497.5L51.5386 514V549.5L53.5386 554L77.5386 562L83.0386 559L108.039 521.5L114.539 519.5L122.039 521.5L169.539 537H175.039L225.039 514L233.539 512L241.539 516L278.039 543L290.539 551.5H296.039L305.039 546L314.039 544.5L322.039 549.5L328.539 562L336.539 564L342.539 559L349.039 523.5L353.539 492V485.5L338.039 459.5L328.539 457L317.039 453L306.539 449.5L302.039 443.5L290.539 421.5L279.039 399.5L271.539 380.5V371.5L282.039 359L273.539 353.5L230.039 346.5L223.039 351.5L215.539 376.5L212.039 380.5L180.039 407L167.539 405L152.539 396L145.039 391.5H138.539L132.039 396L128.539 405L122.039 410.5H108.039L93.0386 407L81.5386 405L69.0386 407L12.5386 435L6.53857 437L4.53857 442L8.53857 452Z"  fill="#E89BBD"/>
+<path id = "brest" class="region-svg" onclick="showRegion('brest')" d="M8.53857 452L48.0386 486.5L53.5386 497.5L51.5386 514V549.5L53.5386 554L77.5386 562L83.0386 559L108.039 521.5L114.539 519.5L122.039 521.5L169.539 537H175.039L225.039 514L233.539 512L241.539 516L278.039 543L290.539 551.5H296.039L305.039 546L314.039 544.5L322.039 549.5L328.539 562L336.539 564L342.539 559L349.039 523.5L353.539 492V485.5L338.039 459.5L328.539 457L317.039 453L306.539 449.5L302.039 443.5L290.539 421.5L279.039 399.5L271.539 380.5V371.5L282.039 359L273.539 353.5L230.039 346.5L223.039 351.5L215.539 376.5L212.039 380.5L180.039 407L167.539 405L152.539 396L145.039 391.5H138.539L132.039 396L128.539 405L122.039 410.5H108.039L93.0386 407L81.5386 405L69.0386 407L12.5386 435L6.53857 437L4.53857 442L8.53857 452Z" stroke="#E89BBD"/>
+</g>
+<path id = "gomel" class="region-svg" onclick="showRegion('gomel')" d="M565.039 592.5L552.539 582L443.039 594L350.039 561.5L363.039 485.5L350.039 462.5L389.039 473.5H395.539H401.539L435.539 447H441.039L525.039 402.5L577.039 341H580.539L620.039 372H625.039L639.039 367.5L646.039 366L647.539 369.5L646.039 375L639.039 391V397L690.539 498.5L692.539 504.5L690.539 509L686.539 512.5H680.039L616.039 502L610.539 505.5L607.039 510.5L604.039 523L599.539 545.5L594.539 571.5L590.039 594C589.205 596.333 587.339 601 586.539 601C585.739 601 583.205 603 582.039 604L574.039 601L565.039 592.5Z" fill="#8EC79A" stroke="#8EC79A"/>
+<path id = "grodno" class="region-svg" onclick="showRegion('grodno')" d="M90.0386 358.5L79.0386 396L119.039 404.5L127.539 388.5C130.705 387.167 136.639 384.5 135.039 384.5C133.439 384.5 139.039 383.167 142.039 382.5L148.539 384.5L168.539 396L174.539 399L209.039 371.5L213.039 357L217.539 347L224.039 341L233.039 340L242.039 341L255.539 343C259.039 343.667 265.939 345 265.539 345C265.139 345 273.039 346.333 277.039 347L285.039 350L283.039 318L261.539 298.5L257.039 293L255.539 284V278.5L288.539 192.5L268.539 154.5V151V146L267.039 142.5H260.539L242.039 146L238.539 151L235.539 167L234.039 190L231.039 195.5L217.539 216L220.039 222L229.539 225.5L234.039 231.5L235.539 237.5L234.039 243.5L229.539 248L221.539 250L213.039 243.5L205.539 237.5L201.539 235.5L198.039 237.5L172.039 251.5L137.039 270.5L125.539 275L119.039 273.5L60.0386 251.5H52.5386L49.0386 253.5L46.5386 258.5L49.0386 266L90.0386 353V358.5Z" fill="#89B8E4" stroke="#89B8E4"/>
+<path id = "vitebsk" class="region-svg" onclick="showRegion('vitebsk')" d="M617.039 210.5C615.705 211.333 611.939 213.4 607.539 215L518.539 238.5L516.039 237V184L512.539 174L508.539 170L502.039 167.5H497.539L431.539 184L428.039 182.5L422.539 177H415.039H409.539L402.539 180H398.039L395.539 178.5L360.539 134.5L351.539 129.5L280.039 134L273.539 135L271.039 129.5V125L274.539 118.5L280.039 116L303.539 118.5L310.039 114.5L312.539 106.5L307.039 98.5L298.539 97L289.539 96C288.039 95 285.039 92.9 285.039 92.5V88.5L293.539 48.5L334.539 25.5L338.039 24L341.539 25.5L357.539 32.5L360.539 34H365.039L369.039 32.5L399.039 0.5H402.539L484.539 7L491.539 8.5L495.039 12.5L496.539 18L498.539 29L502.539 34L508.539 36.5H515.539L569.039 22.5L573.039 24L614.539 67.5L610.539 160L606.539 165.5L604.539 171V177L607.539 181L614.039 184.5L619.039 188L621.039 192.5L619.039 205L617.039 210.5Z" fill="#BACE6B" stroke="#BACE6B"/>
+<path id = "mogilev" class="region-svg" onclick="showRegion('mogilev')" d="M518.539 396.5L436.539 440L435.039 433L413.039 374.5L414.039 369.5L456.539 327.5L515.539 246L521.539 248L621.039 219.5L639.539 244.5L667.539 248L673.039 251L674.539 255V273L679.039 276.5L682.039 278.5H717.039L720.539 281.5L723.039 284.5L746.039 332V337L743.039 341L693.539 379.5H688.039L683.539 375.5L658.539 353H652.539L627.539 363.5H621.039L585.539 334L580.539 332H576.039L572.039 334L518.539 396.5Z" fill="#FFEB64" stroke="#FFEB64"/>
+<path id = "minsk" class="region-svg" onclick="showRegion('minsk')" d="M451.039 321L407.039 364.5L403.539 371.5L405.539 378L424.039 432.5L427.039 442L424.039 447.5L397.039 466H391.539L312.039 442L308.539 438L278.539 382V378L280.039 374L293.039 354.5L291.539 317.5L289.039 313L267.039 292.5L265.039 287V282L298.539 196.5L297.039 190L276.539 150.5L279.039 145L283.539 141L346.539 136.5L353.039 139L389.539 184.5L396.539 188H401.039L412.539 184.5H419.039L430.539 192.5H434.539L490.039 178L501.539 176L506.039 179.5L507.539 184.5L506.039 244.5L451.039 321Z" fill="#F8A758" stroke="#F8A758"/>
+<path id = "minsk-city" class="region-svg" onclick="showRegion('minsk')" d="M382.539 293.5L370.539 300L357.539 293.5V278L370.539 270L382.539 278V293.5Z" fill="#F8F400" stroke="#F8F400"/>
+<path d="M369.565 286.083L167.774 151.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M167.773 151.5L114.039 151.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M114.695 148.5V147.604H116.151V126.996H114.759V126.1H119.335L121.959 142.388H121.671L124.631 126.1H128.983V126.996H127.575V147.604H129.079V148.5H123.719V147.604H125.175V127.076H125.431L121.495 147.636H120.423L116.871 126.82H117.047V147.604H118.519V148.5H114.695ZM130.16 148.5V147.604H131.792V132.644H130.16V131.748H134.192V147.604H135.856V148.5H130.16ZM132.976 128.708C132.475 128.708 132.054 128.537 131.712 128.196C131.371 127.855 131.2 127.444 131.2 126.964C131.2 126.473 131.371 126.057 131.712 125.716C132.054 125.375 132.475 125.204 132.976 125.204C133.435 125.204 133.835 125.375 134.176 125.716C134.518 126.057 134.688 126.473 134.688 126.964C134.688 127.444 134.518 127.855 134.176 128.196C133.835 128.537 133.435 128.708 132.976 128.708ZM136.833 148.5V147.604H138.433V132.644H136.833V131.748H140.785V133.62C140.859 133.353 141.009 133.065 141.233 132.756C141.467 132.436 141.777 132.164 142.161 131.94C142.555 131.716 143.009 131.604 143.521 131.604C144.022 131.604 144.507 131.727 144.977 131.972C145.446 132.217 145.83 132.692 146.129 133.396C146.427 134.1 146.577 135.14 146.577 136.516V147.604H148.145V148.5H142.849V147.604H144.177V136.788C144.177 135.423 144.059 134.436 143.825 133.828C143.59 133.22 143.217 132.916 142.705 132.916C142.438 132.916 142.193 133.017 141.969 133.22C141.745 133.423 141.547 133.689 141.377 134.02C141.206 134.351 141.073 134.713 140.977 135.108C140.891 135.492 140.843 135.865 140.833 136.228V147.604H142.145V148.5H136.833ZM152.986 148.852C152.452 148.852 152.031 148.777 151.722 148.628C151.412 148.489 151.167 148.351 150.986 148.212C150.815 148.073 150.655 148.004 150.506 148.004C150.378 148.004 150.287 148.047 150.234 148.132C150.191 148.217 150.17 148.34 150.17 148.5H149.418V143.748H150.314C150.367 144.388 150.458 144.969 150.586 145.492C150.714 146.004 150.884 146.447 151.098 146.82C151.311 147.183 151.572 147.465 151.882 147.668C152.191 147.86 152.548 147.956 152.954 147.956C153.37 147.956 153.7 147.844 153.946 147.62C154.191 147.396 154.367 147.113 154.474 146.772C154.591 146.42 154.65 146.057 154.65 145.684C154.65 145.161 154.564 144.649 154.394 144.148C154.223 143.647 153.962 143.135 153.61 142.612C153.258 142.089 152.815 141.54 152.282 140.964C151.503 140.132 150.847 139.279 150.314 138.404C149.791 137.529 149.53 136.484 149.53 135.268C149.53 134.436 149.684 133.753 149.994 133.22C150.314 132.676 150.724 132.271 151.226 132.004C151.727 131.737 152.26 131.604 152.826 131.604C153.252 131.604 153.594 131.657 153.85 131.764C154.116 131.871 154.33 131.977 154.49 132.084C154.65 132.18 154.783 132.228 154.89 132.228C154.986 132.228 155.055 132.191 155.098 132.116C155.14 132.031 155.162 131.908 155.162 131.748H155.962V136.356H155.066C155.023 135.737 154.948 135.188 154.842 134.708C154.735 134.228 154.591 133.828 154.41 133.508C154.228 133.177 154.01 132.932 153.754 132.772C153.498 132.601 153.199 132.516 152.858 132.516C152.335 132.516 151.924 132.708 151.626 133.092C151.338 133.476 151.194 133.983 151.194 134.612C151.194 135.327 151.391 135.999 151.786 136.628C152.191 137.257 152.762 137.967 153.498 138.756C154.095 139.396 154.607 140.031 155.034 140.66C155.471 141.279 155.807 141.919 156.042 142.58C156.276 143.231 156.394 143.945 156.394 144.724C156.394 145.567 156.255 146.297 155.978 146.916C155.711 147.535 155.322 148.015 154.81 148.356C154.298 148.687 153.69 148.852 152.986 148.852ZM157.802 148.5V147.604H159.386V125.396H157.802V124.5H161.786V138.084L165.242 132.644H163.818V131.748H167.754V132.644H166.298L163.962 136.596L167.754 147.604H169.082V148.5H163.818V147.604H165.146L162.154 138.916L161.786 139.748V147.604H163.066V148.5H157.802Z" fill="white"/>
+<defs>
+<filter id="filter0_d_2062_55" x="0" y="345.974" width="358.039" height="226.573" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2062_55"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2062_55" result="shape"/>
+</filter>
+</defs>
+</svg>
+
+</div>
+
+    <div id="regionInfo" class="region-info"></div>
+
+</section>
+
+<div class="map-tools">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Поиск достопримечательности..."
+        data-i18n="map_search_placeholder"
+    >
+
+    <button onclick="searchPlace()" data-i18n="map_search_btn">
+        🔍 Найти
+    </button>
+
+</div>
+
+<section id="map-section" class="map-section">
+<h2 data-i18n="map_title">Выберите место для путешествия</h2>
+<div class="map-container">
+<div id="map"></div>
+</div>
+</section>
+
+<section class="routes">
+
+    <h2 data-i18n="routes_title">Туристические маршруты от организаций</h2>
+
+    <div class="cards">
+
+        <div class="card place-card">
+            <img src="images/mir.jpg" alt="Замки Беларуси">
+            <h3 data-i18n="route1_name">🏰 Замки Беларуси</h3>
+            <p data-i18n="route1_desc">Мирский и Несвижский замки — путешествие по истории и архитектуре.</p>
+            <p><span data-i18n="route_price">Цена:</span> 150 BYN</p>
+            <p><span data-i18n="route_phone">Номер:</span> +375 XX XXXXXXX</p>
+        </div>
+
+        <div class="card place-card">
+            <img src="images/brest.jpg" alt="Военная история">
+            <h3 data-i18n="route2_name">🛡 Военная история</h3>
+            <p data-i18n="route2_desc">Экскурсия по Брестской крепости.</p>
+            <p><span data-i18n="route_price">Цена:</span> 150 BYN</p>
+            <p><span data-i18n="route_phone">Номер:</span> +375 XX XXXXXXX</p>
+        </div>
+
+        <div class="card place-card">
+            <img src="images/bialowieza.jpg" alt="Природа Беларуси">
+            <h3 data-i18n="route3_name">🌲 Природа Беларуси</h3>
+            <p data-i18n="route3_desc">Беловежская пуща, озёра и уникальные природные маршруты.</p>
+            <p><span data-i18n="route_price">Цена:</span> 150 BYN</p>
+            <p><span data-i18n="route_phone">Номер:</span> +375 XX XXXXXXX</p>
+        </div>
+
+        <div class="card place-card">
+            <img src="images/vitebsk/vitebsk.jpg" alt="Озёра Витебщины">
+            <h3 data-i18n="route4_name">🏞 Озёра Витебщины</h3>
+            <p data-i18n="route4_desc">Тур по живописным озёрам севера Беларуси и музею-усадьбе Репина.</p>
+            <p><span data-i18n="route_price">Цена:</span> 130 BYN</p>
+            <p><span data-i18n="route_phone">Номер:</span> +375 XX XXXXXXX</p>
+        </div>
+
+        <div class="card place-card">
+            <img src="images/sobor.jpg" alt="Полоцк — город истории">
+            <h3 data-i18n="route5_name">⛪ Полоцк — город истории</h3>
+            <p data-i18n="route5_desc">Софийский собор и древние памятники первого государства на белорусских землях.</p>
+            <p><span data-i18n="route_price">Цена:</span> 140 BYN</p>
+            <p><span data-i18n="route_phone">Номер:</span> +375 XX XXXXXXX</p>
+        </div>
+
+        <div class="card place-card">
+            <img src="images/ansambl.jpg" alt="Чернобыльский след">
+            <h3 data-i18n="route6_name">☢ Чернобыльский след</h3>
+            <p data-i18n="route6_desc">Экскурсия по Гомельщине: дворец Румянцевых-Паскевичей и история региона.</p>
+            <p><span data-i18n="route_price">Цена:</span> 160 BYN</p>
+            <p><span data-i18n="route_phone">Номер:</span> +375 XX XXXXXXX</p>
+        </div>
+    </div>
+
+</section>
+
+<section class="stats">
+<div class="stat"><h3>150+</h3><p data-i18n="stats_attractions">Достопримечательностей</p></div>
+<div class="stat"><h3>6</h3><p data-i18n="stats_regions">Областей</p></div>
+<div class="stat"><h3>4</h3><p data-i18n="stats_unesco">Объекта ЮНЕСКО</p></div>
+</section>
+
+
+</main>
+
+<footer>
+<p data-i18n="footer">© Tourist Guide BY</p>
+</footer>
+
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=8e775024-ff71-4616-9f68-04e50ec2adfb" type="text/javascript"></script>
+<script src="script.js"></script>
+</body>
+</html>

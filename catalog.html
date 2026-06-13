@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Каталог достопримечательностей</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<button id="hamburger-btn" class="hamburger-btn" aria-label="Меню">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+<aside id="sidebar" class="sidebar">
+
+  <button id="sidebar-close" class="sidebar-close" aria-label="Закрыть">&times;</button>
+
+  <div class="sidebar-section">
+    <button id="toggle-theme">🌙 Тёмная тема</button>
+    <button id="toggle-lang" style="margin-top:8px;">🌐 English</button>
+  </div>
+
+  <div class="sidebar-section">
+
+    <!-- Форма входа/регистрации (видна, если пользователь не авторизован) -->
+    <div id="auth-forms">
+
+      <div id="login-form" class="auth-form">
+        <h3 data-i18n="sidebar_login_title">Вход</h3>
+        <input type="text" id="login-username" placeholder="Имя пользователя" data-i18n="sidebar_login_username">
+        <input type="password" id="login-password" placeholder="Пароль" data-i18n="sidebar_login_password">
+        <button id="login-submit" class="hero-btn" data-i18n="sidebar_login_btn">Войти</button>
+        <p class="auth-switch"><span data-i18n="sidebar_login_switch">Нет аккаунта?</span> <a href="#" id="show-register" data-i18n="sidebar_login_switch_link">Зарегистрироваться</a></p>
+        <p id="login-error" class="auth-error"></p>
+      </div>
+
+      <div id="register-form" class="auth-form" style="display:none;">
+        <h3 data-i18n="sidebar_register_title">Регистрация</h3>
+        <input type="text" id="register-username" placeholder="Имя пользователя" data-i18n="sidebar_login_username">
+        <input type="password" id="register-password" placeholder="Пароль" data-i18n="sidebar_login_password">
+        <button id="register-submit" class="hero-btn" data-i18n="sidebar_register_btn">Зарегистрироваться</button>
+        <p class="auth-switch"><span data-i18n="sidebar_register_switch">Уже есть аккаунт?</span> <a href="#" id="show-login" data-i18n="sidebar_register_switch_link">Войти</a></p>
+        <p id="register-error" class="auth-error"></p>
+      </div>
+
+    </div>
+
+    <!-- Профиль пользователя (виден после входа) -->
+    <div id="user-profile" style="display:none;">
+      <h3 id="profile-username"></h3>
+
+      <div class="favorites-block">
+        <h4 data-i18n="sidebar_favorites_title">⭐ Избранное</h4>
+        <ul id="favorites-list" class="favorites-list"></ul>
+        <p id="favorites-empty" class="favorites-empty" data-i18n="sidebar_favorites_empty">Пока пусто. Добавляйте достопримечательности из каталога!</p>
+      </div>
+
+      <button id="logout-btn" class="hero-btn secondary logout-btn" data-i18n="auth_logout_btn">🚪 Выйти из аккаунта</button>
+    </div>
+
+  </div>
+
+
+</aside>
+
+
+  <header>
+    <nav class="main-nav">
+      <a href="index.html" data-i18n="nav_home">Главная</a>
+      <a href="developer.html" data-i18n="nav_developer">О разработчике</a>
+    </nav>
+  </header>
+  
+<div id="info-box" class="info-box"></div>
+
+  <main class="catalog-section">
+    <h1 data-i18n="catalog_title">Каталог достопримечательностей</h1>
+
+    <div class="filter-bar">
+      <label for="category" data-i18n="filter_label">Категория:</label>
+      <select id="category">
+        <option value="all" data-i18n="filter_all">Все</option>
+        <option value="замки" data-i18n="filter_castles">Замки</option>
+        <option value="музеи" data-i18n="filter_museums">Музеи</option>
+        <option value="природа" data-i18n="filter_nature">Природа</option>
+      </select>
+    </div>
+
+    <div class="attraction-list">
+
+      <div class="attraction" id="mir" data-category="замки">
+        <img src="images/mir.jpg" alt="Мирский замок">
+        <h2 data-i18n="cat_mir_name">Мирский замок</h2>
+        <p data-i18n="cat_mir_desc">Уникальный памятник архитектуры XVI века.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="nesvizh" data-category="замки">
+        <img src="images/nesvizh.jpg" alt="Несвижский замок">
+        <h2 data-i18n="cat_nesvizh_name">Несвижский замок</h2>
+        <p data-i18n="cat_nesvizh_desc">Один из самых известных замков Беларуси. Включён в список наследия ЮНЕСКО.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="brest-fortress" data-category="замки">
+        <img src="images/brest.jpg" alt="Брестская крепость">
+        <h2 data-i18n="cat_brest_name">Брестская крепость</h2>
+        <p data-i18n="cat_brest_desc">Мемориальный комплекс на месте героической обороны 1941 года.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="bialowieza" data-category="природа">
+        <img src="images/bialowieza.jpg" alt="Беловежская пуща">
+        <h2 data-i18n="cat_bialowieza_name">Беловежская пуща</h2>
+        <p data-i18n="cat_bialowieza_desc">Один из старейших лесов Европы, заповедник с зубрами.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="bela-vezha" data-category="замки">
+        <img src="images/main.jpg" alt="Каменецкая башня (Белая вежа)">
+        <h2 data-i18n="cat_belaya_vezha_name">Каменецкая башня (Белая вежа)</h2>
+        <p data-i18n="cat_belaya_vezha_desc">Древняя оборонительная башня XIII века в городе Каменец.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="sofia-cathedral" data-category="музеи">
+        <img src="images/main_light.jpg" alt="Софийский собор (Полоцк)">
+        <h2 data-i18n="cat_sofia_name">Софийский собор (Полоцк)</h2>
+        <p data-i18n="cat_sofia_desc">Один из древнейших храмов на территории Беларуси.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="repin-museum" data-category="музеи">
+        <img src="images/repin.jpg" alt="Музей-усадьба Репина «Здравнёво»">
+        <h2 data-i18n="cat_repin_name">Музей-усадьба Репина «Здравнёво»</h2>
+        <p data-i18n="cat_repin_desc">Бывшее имение художника Ильи Репина под Витебском.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="gomel-palace" data-category="замки">
+        <img src="images/ansambl.jpg" alt="Дворцово-парковый ансамбль (Гомель)">
+        <h2 data-i18n="cat_gomel_name">Дворцово-парковый ансамбль (Гомель)</h2>
+        <p data-i18n="cat_gomel_desc">Резиденция Румянцевых и Паскевичей с парком на берегу Сожа.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="grodno-castle" data-category="замки">
+        <img src="images/grodnozam.jpg" alt="Старый замок (Гродно)">
+        <h2 data-i18n="cat_grodno_name">Старый замок (Гродно)</h2>
+        <p data-i18n="cat_grodno_desc">Резиденция великих князей литовских и королей польских.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="novogrudok-castle" data-category="замки">
+        <img src="images/novogrudok.jpg" alt="Новогрудский замок">
+        <h2 data-i18n="cat_novogrudok_name">Новогрудский замок</h2>
+        <p data-i18n="cat_novogrudok_desc">Руины замка — первой столицы Великого княжества Литовского.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="khatyn" data-category="музеи">
+        <img src="images/khatyn.jpg" alt="Мемориальный комплекс «Хатынь»">
+        <h2 data-i18n="cat_khatyn_name">Мемориальный комплекс «Хатынь»</h2>
+        <p data-i18n="cat_khatyn_desc">Памятник всем белорусским деревням, сожжённым в годы войны.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="upper-town" data-category="музеи">
+        <img src="images/up.jpg" alt="Верхний город (Минск)">
+        <h2 data-i18n="cat_uppertown_name">Верхний город (Минск)</h2>
+        <p data-i18n="cat_uppertown_desc">Исторический центр Минска с архитектурой XVII–XVIII веков.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="mogilev-townhall" data-category="музеи">
+        <img src="images/ratus.jpg" alt="Могилёвская ратуша">
+        <h2 data-i18n="cat_mogilev_name">Могилёвская ратуша</h2>
+        <p data-i18n="cat_mogilev_desc">Символ городского самоуправления, восстановленный памятник архитектуры.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="bobruisk-fortress" data-category="замки">
+        <img src="images/bobr.jpg" alt="Бобруйская крепость">
+        <h2 data-i18n="cat_bobruisk_name">Бобруйская крепость</h2>
+        <p data-i18n="cat_bobruisk_desc">Одна из крупнейших крепостей Российской империи XIX века.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+      <div class="attraction" id="art-museum" data-category="музеи">
+        <img src="images/museum.jpg" alt="Национальный художественный музей">
+        <h2 data-i18n="cat_artmuseum_name">Национальный художественный музей</h2>
+        <p data-i18n="cat_artmuseum_desc">Крупнейшее собрание произведений искусства Беларуси.</p>
+        <a href="#" data-i18n="more_link">Подробнее</a>
+        <button class="favorite-btn" data-favorite-btn data-i18n="favorite_btn">⭐ В избранное</button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <p data-i18n="footer">&copy; 2025 Каталог достопримечательностей</p>
+  </footer>
+
+  <div id="attraction-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Закрыть">&times;</button>
+      <h2 id="modal-title"></h2>
+      <p id="modal-address" class="modal-address"></p>
+      <div id="modal-gallery" class="modal-gallery"></div>
+      <p id="modal-description" class="modal-description"></p>
+      <a id="modal-route-btn" class="modal-route-btn" target="_blank" rel="noopener" data-i18n="modal_route_btn">
+        🗺️ Построить маршрут на Яндекс.Картах
+      </a>
+      <button id="modal-favorite-btn" class="favorite-btn" style="margin-left:10px;">⭐ В избранное</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
